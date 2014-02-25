@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="demo">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS CSV Binding</title>
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>Angular CSV Binding</h1>
+		</div>
+
+		<!-- Manipulators -->
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>Delimiter</label>
+					<input type="text" ng-model="delimiter" class="form-control" ng-trim="false">
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="hasHeaders"> Has Headers
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<!-- Input -->
+		<div class="form-group">
+			<label>CSV</label>
+			<textarea class="form-control" rows="10" csv delimiter="delimiter" has-headers="hasHeaders" ng-model="data"></textarea> 
+		</div>
+
+		<hr />
+
+		<!-- Output -->
+		<h3>Data</h3>
+		<pre ng-bind="data | json"></pre>
+
+	</div>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+	<script type="text/javascript" src="angular-csv-binding.js"></script>
+	<script type="text/javascript">
+		'use strict';
+
+		angular.module('app', ['csvBinding'])
+		.controller('demo', ['$scope', function($scope){
+			$scope.data = [{a:'test',b:'test2'}, {a:'test3',b:'test4'}];
+			$scope.delimiter = ',';
+			$scope.hasHeaders = true;
+		}]);
+	</script>
+</body>
+</html>

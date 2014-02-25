@@ -1,0 +1,15 @@
+{
+    "name": "angular-csv-binding",
+    "version": "1.0.0",
+    "main": "angular-csv-binding.min.js",
+    "description": "two-way binding of data to textareas via csv",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:JustMaier/angular-csv-binding.git"
+    },
+    "dependencies": {
+        "angular": "*"
+    },
+    "devDependencies": {}
+}
