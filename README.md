@@ -28,6 +28,7 @@ angular.module('app', ['csvBinding'])
 }]);
 ```
 
+####html
 ```html
 <textarea class="form-control" rows="10" csv delimiter="delimiter" has-headers="hasHeaders" ng-model="data"></textarea> 
 <pre ng-bind="data | json"></pre>
