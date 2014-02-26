@@ -12,7 +12,6 @@ angular.module('csvBinding', [])
 		link: function(scope, element, attr, ngModel){
 			scope.delimiter == scope.delimiter || ',';
 			scope.hasHeaders == angular.isDefined(scope.hasHeaders)? scope.hasHeaders : true;
-			var	headers = []; //To maintain order when adding headers
 
 			// This will parse a delimited string into an array of
 			// arrays. The default delimiter is the comma, but this
@@ -22,7 +21,7 @@ angular.module('csvBinding', [])
 					hasHeaders = angular.isDefined(scope.hasHeaders)? scope.hasHeaders : true;
 
 				if(strData.indexOf(delimiter) == -1) return [];
-				headers = [];
+				var headers = [];
 
 				// Create a regular expression to parse the CSV values.
 				var objPattern = new RegExp(
@@ -127,15 +126,15 @@ angular.module('csvBinding', [])
 
 				//Get updated headers
 				if(hasHeaders){
-					var newHeaders = angular.copy(headers);
+					var headers = [];
 					angular.forEach(array, function(item){
 						angular.forEach(item, function(value, key){
-							if(newHeaders.indexOf(key) == -1){
-								newHeaders.push(key);
+							if(headers.indexOf(key) == -1){
+								headers.push(key);
 							}
 						});
 					});
-					out.push(newHeaders.join(delimiter));
+					out.push(headers.join(delimiter));
 				}
 
 				//Prepare out string
@@ -143,7 +142,7 @@ angular.module('csvBinding', [])
 					var outLine = [];
 
 					if(hasHeaders){
-						angular.forEach(newHeaders, function(header){
+						angular.forEach(headers, function(header){
 							outLine.push(item[header] || '');
 						});
 					}else{
