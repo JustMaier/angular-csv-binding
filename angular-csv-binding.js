@@ -20,7 +20,6 @@ angular.module('csvBinding', [])
 				var delimiter = scope.delimiter || ',',
 					hasHeaders = angular.isDefined(scope.hasHeaders)? scope.hasHeaders : true;
 
-				if(strData.indexOf(delimiter) == -1) return [];
 				var headers = [];
 
 				// Create a regular expression to parse the CSV values.
@@ -36,8 +35,7 @@ angular.module('csvBinding', [])
 						"([^\"\\" + delimiter + "\\r\\n]*))"
 					),
 					"gi"
-					);
-
+				);
 
 				// Create an array to hold our data. Give the array
 				// a default empty first row.
